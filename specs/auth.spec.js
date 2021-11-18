@@ -1,17 +1,13 @@
+import LoginPage from '../pages/login.page';
+import ProfilePage from '../pages/profile.page';
+
 describe('Auth', function() {
     it('Successful log in', async function() {
-        await browser.url('/user/login');
-        await expect($('.login-form-button'))
+        await LoginPage.open();
+        await expect(LoginPage.buttonSubmit)
             .toBeDisabled();
-        await $('[qa-id="email"]')
-            .setValue('ipisaryev@gmail.com');
-        await $('[qa-id="password"]')
-            .setValue('31101967Serg');
-        await expect($('.login-form-button'))
-            .toBeEnabled();
-        await $('.login-form-button')
-            .click();
-        await expect($('img[alt="avatarIcon"]'))
+        await LoginPage.login('ipisaryev@gmail.com', '31101967Serg');
+        await expect(ProfilePage.iconUser)
             .toBeDisplayed();
     });
 });
