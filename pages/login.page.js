@@ -6,8 +6,8 @@ class LoginPage extends Page {
     get buttonSubmit() { return $('.login-form-button') }
     get notification() { return $('.ant-notification-notice-closable')}
     get emailMessage() { return $('//div[contains(text(),"\'email\' is not a valid email")]')}
-    get passwordValidation() { return $('//div[contains(text(),\'Required\')]')}
-    get emailValidation() { return $('//form[1]/div[1]/div[1]/div[2]/div[1]')}
+    get passwordValidation() { return $('//form[@id=\'normal_login\']/div[2]/div[@class=\'ant-col ant-form-item-control\']')}
+    get emailValidation() { return $('//form[@id=\'normal_login\']/div[1]//div[@role=\'alert\']')}
 
 
     async login(username, password) {
