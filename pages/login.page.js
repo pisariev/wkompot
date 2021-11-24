@@ -8,7 +8,6 @@ class LoginPage extends Page {
     get emailMessage() { return $('//div[contains(text(),"\'email\' is not a valid email")]')}
     get passwordValidation() { return $('//div[contains(text(),\'Required\')]')}
     get emailValidation() { return $('//form[1]/div[1]/div[1]/div[2]/div[1]')}
-    get passwordMessage() { return $('.ant-notification-notice-closable')}
 
 
     async login(username, password) {
