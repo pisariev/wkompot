@@ -10,6 +10,7 @@ class LoginPage extends Page {
     get emailValidation() { return $('//form[1]/div[1]/div[1]/div[2]/div[1]')}
 
 
+
     async login(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
