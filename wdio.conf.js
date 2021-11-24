@@ -1,5 +1,3 @@
-const { addCommands } = require('./helpers/setup.helper');
-
 exports.config = {
     specs: [
         './specs/**/*.spec.js'
@@ -28,7 +26,4 @@ exports.config = {
         timeout: 60000
     },
 
-    before: async function (capabilities, specs, browser) {
-        await addCommands();
-    }
 }
