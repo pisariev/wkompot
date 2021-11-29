@@ -1,4 +1,5 @@
 const { addCommands } = require('./helpers/setup.helper');
+require('dotenv').config();
 
 exports.config = {
     specs: [
@@ -14,7 +15,7 @@ exports.config = {
     }],
     logLevel: 'info',
     bail: 0,
-    baseUrl: 'https://kompot.us',
+    baseUrl: process.env.BASE_URL,
 
     waitforTimeout: 10000,
     connectionRetryTimeout: 30000,
@@ -28,11 +29,7 @@ exports.config = {
         timeout: 60000
     },
 
-    before: async function(capabilities, specs, browser) {
-        browser.addCommand('smartClear', async function() {
-            const text = await this.getValue();
-            for (let char of text)
-                await this.keys('Backspace');
-        }, true);
+    before: async function (capabilities, specs, browser) {
+        await addCommands();
     }
 }
