@@ -9,9 +9,6 @@ class LoginPage extends Page {
     get passwordValidation() { return $('//form[@id=\'normal_login\']/div[2]/div[@class=\'ant-col ant-form-item-control\']')}
     get emailValidation() { return $('//form[@id=\'normal_login\']/div[1]//div[@role=\'alert\']')}
 
-
-
-
     async login(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
