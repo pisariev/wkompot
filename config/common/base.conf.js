@@ -1,5 +1,7 @@
-const { addCommands } = require('./helpers/setup.helper');
-require('dotenv').config();
+import { config } from 'dotenv';
+import hooks from './hooks.conf';
+
+config();
 
 exports.config = {
     specs: [
@@ -7,12 +9,6 @@ exports.config = {
     ],
     exclude: [
     ],
-    maxInstances: 1,
-    capabilities: [{
-        maxInstances: 1,
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-    }],
     logLevel: 'info',
     bail: 0,
     baseUrl: process.env.BASE_URL,
@@ -21,7 +17,7 @@ exports.config = {
     connectionRetryTimeout: 30000,
     connectionRetryCount: 1,
 
-    services: ['devtools'],
+    services: ['devtools', 'geckodriver'],
     reporters: ['spec'],
     framework: 'mocha',
     mochaOpts: {
@@ -29,7 +25,5 @@ exports.config = {
         timeout: 60000
     },
 
-    before: async function (capabilities, specs, browser) {
-        await addCommands();
-    }
+    ...hooks,
 }
