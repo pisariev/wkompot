@@ -14,27 +14,22 @@ describe('Auth', function() {
             .toBeDisplayed();
     });
 
-    it('the set password is invalid ', async function() {
-        await LoginPage.login(process.env.LOGIN, 'invalid');
-        await expect(LoginPage.notification).toHaveTextContaining('Incorrect password')
+    it('Log in attempt with non-registered email', async function() {
+        await LoginPage.login('testinvalid@example.com', 'testinvalid');
+        await expect(LoginPage.notification).toHaveText('Email is not registered');
     });
 
-    it('User entered an unregistered email address or password ', async function () {
-        await LoginPage.login('example@gmail.com', 'example');
-        await expect(LoginPage.notification).toHaveTextContaining('Email is not registered');
-     });
-
-     it('value format check ', async function () {
-         await LoginPage.inputUsername.setValue('invalid');
-         await expect(LoginPage.emailMessage).toHaveTextContaining('\'email\' is not a valid email');
-     });
+    it('Log in attempt with invalid password', async function() {
+        await LoginPage.login(process.env.LOGIN, 'testinvalid');
+        await expect(LoginPage.notification).toHaveText('Incorrect password');
+    });
 
     it('Credentials are required', async function() {
-        await LoginPage.inputUsername.setValue('invalid@example.com');
+        await LoginPage.inputUsername.setValue('test');
         await LoginPage.inputUsername.smartClear();
-        await expect(LoginPage.emailValidation).toHaveTextContaining('Required');
-        await LoginPage.inputPassword.setValue('invalid');
+        await expect(LoginPage.loginError).toHaveText('Required');
+        await LoginPage.inputPassword.setValue('test');
         await LoginPage.inputPassword.smartClear();
-        await expect(LoginPage.passwordValidation).toHaveTextContaining('Required');
+        await expect(LoginPage.passwordError).toHaveText('Required');
     });
-});
+})

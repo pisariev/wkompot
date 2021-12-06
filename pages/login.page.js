@@ -4,13 +4,9 @@ class LoginPage extends Page {
     get inputUsername() { return $('[qa-id="email"]') }
     get inputPassword() { return $('[qa-id="password"]') }
     get buttonSubmit() { return $('.login-form-button') }
-    get notification() { return $('.ant-notification-notice-closable')}
-    get emailMessage() { return $('//div[contains(text(),"\'email\' is not a valid email")]')}
-    get passwordValidation() { return $('//form[@id=\'normal_login\']/div[2]/div[@class=\'ant-col ant-form-item-control\']')}
-    get emailValidation() { return $('//form[@id=\'normal_login\']/div[1]//div[@role=\'alert\']')}
-
-
-
+    get notification() { return $('.ant-notification-notice-message') }
+    get loginError() { return $('//div[@data-qa="normalEmail"]//div[@class="ant-form-item-explain-error"]') }
+    get passwordError() { return $('//div[div[@class="ant-form-item-control-input"]//input[@qa-id="password"]]//div[@class="ant-form-item-explain-error"]') }
 
     async login(username, password) {
         await this.inputUsername.setValue(username);
