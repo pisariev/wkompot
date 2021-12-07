@@ -22,12 +22,12 @@ describe('Auth', function() {
     it('User entered an unregistered email address or password ', async function () {
         await LoginPage.login('example@gmail.com', 'example');
         await expect(LoginPage.notification).toHaveTextContaining('Email is not registered');
-     });
+    });
 
-     it('value format check ', async function () {
-         await LoginPage.inputUsername.setValue('invalid');
-         await expect(LoginPage.emailMessage).toHaveTextContaining('\'email\' is not a valid email');
-     });
+    it('value format check ', async function () {
+        await LoginPage.inputUsername.setValue('invalid');
+        await expect(LoginPage.emailMessage).toHaveTextContaining('\'email\' is not a valid email');
+    });
 
     it('Credentials are required', async function() {
         await LoginPage.inputUsername.setValue('invalid@example.com');

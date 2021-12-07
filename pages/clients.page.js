@@ -7,15 +7,15 @@ class ClientsPage extends AppPage {
     get createClient() { return $('//button[span[.="Create Client"]]') }
 
     async deleteClient(email) {
-        await browser.execute((addr) => {
-            $x(`//tr[.//a[.="${addr}"]]//span[contains(@class, "ant-dropdown-trigger")]/img`).click();
-        }, email);
-        // const options = $(`//tr[.//a[.="${email}"]]//span[contains(@class, "ant-dropdown-trigger")]/img`);
-        // await options.waitForDisplayed();
-        await browser.pause(3000);
+        const options = $(`//tr[.//a[.="${email}"]]//span[contains(@class, "ant-dropdown-trigger")]`);
+        await options.waitForClickable();
         await options.click();
         const itemDelete = $('//span[@class="ant-dropdown-menu-title-content"][.="Delete"]');
+        await itemDelete.waitForClickable();
         await itemDelete.click();
+        const buttonConfirm = $('//button[contains(@class, "ant-btn-dangerous")][span[.="OK"]]');
+        await buttonConfirm.waitForClickable();
+        await buttonConfirm.click();
     }
 
     async getItemByEmail(email) {
