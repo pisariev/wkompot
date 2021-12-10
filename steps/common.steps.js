@@ -35,3 +35,10 @@ When(/^I enter password (.*) and clear it$/, async function (password) {
 Then(/^I should see validation error for password field$/, async function () {
     await expect(LoginPage.passwordValidation).toHaveTextContaining('Required');
 });
+
+When(/^I enter username (.*) not correct email$/, async function (username) {
+    await LoginPage.inputUsername.setValue(username);
+});
+Then(/^I should see a message with text (.*)$/, async function (message) {
+    await expect(LoginPage.emailMessage).toHaveTextContaining(message);
+});

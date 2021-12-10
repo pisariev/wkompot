@@ -37,3 +37,13 @@ Feature: The Internet Guinea Pig Website
       | username             | password  |
       | invalid@example.com  | invalid   |
 
+  Scenario Outline: As a user, I can checkout format email
+    When I enter username <username> not correct email
+    Then I should see a message with text <message>
+
+    Examples:
+    | username  | message                      |
+    | invalid   | 'email' is not a valid email |
+
+
+
