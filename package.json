@@ -7,6 +7,9 @@
         "test:chrome:headless": "npx wdio run ./config/chrome.headless.conf.js",
         "test:firefox": "npx wdio run ./config/firefox.conf.js",
         "test:firefox:headless": "npx wdio run ./config/firefox.headless.conf.js",
+        "test:selenoid": "npx wdio run ./config/selenoid.conf.js",
+        "test:selenium": "npx wdio run ./config/selenium.conf.js",
+        "test:browserstack": "npx wdio run ./config/browserstack.conf.js",
         "report:serve": "npx allure serve allure-results",
         "report:generate": "npx allure generate allure-results -o allure-report --clean",
         "report:open": "npx allure open allure-report"

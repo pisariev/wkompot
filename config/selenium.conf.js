@@ -2,6 +2,9 @@ import merge from 'deepmerge';
 import baseConf from './common/base.conf';
 
 exports.config = merge(baseConf.config, {
+    hostname: process.env.REMOTE_ADDRESS,
+    port: 4444,
+    path: '/wd/hub',
     maxInstances: 1,
     capabilities: [{
         maxInstances: 1,
