@@ -5,7 +5,7 @@ config();
 
 exports.config = {
     specs: [
-        './specs/**/*.spec.js'
+        './specs/**/auth.spec.js'
     ],
     exclude: [
     ],
